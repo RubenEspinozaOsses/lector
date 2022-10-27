@@ -2,6 +2,7 @@ import json
 import sys
 
 searched = []
+found = []
 
 
 def buscar_codigo(codigo):
@@ -11,11 +12,24 @@ def buscar_codigo(codigo):
     
     return found
 
+def append(arr):
+    for el in arr:
+        found.append(el)
+
+
+
 args = sys.argv
 for i in range(1,len(args)):
     if args[i] not in searched:
         searched.append(args[i])
-        print(buscar_codigo(args[i]))
+        append(buscar_codigo(args[i]))
+
+
+
+
+
+print(found)
+        
 
 
 

@@ -6,7 +6,9 @@ import shutil
 folders = [file for file in os.listdir(os.path.join('files/carpetas_procesadas')) if not file.endswith('.pdf')]
 
 
-
+def identify_folder_format():
+    'Identify the format of the folders to correctly process the information'
+    pass
 
 
 def save_on_data_list(folder):
@@ -16,6 +18,7 @@ def save_on_data_list(folder):
         as_json = json.load(open(folder + '/tablas/' + file))
 
         month = as_json[0]['0'].split('\n')[0] # obtiene los meses de las tablas, ['1'] obtiene numero de cuota(?)
+
         #8 es donde estan los header
         #9 es donde estan los valores
         headers = as_json[8]
