@@ -10,11 +10,17 @@ files = [file for file in os.listdir(os.path.join('files/carpetas_por_procesar')
 def save_tables_to_json(file, nombre_carpeta):
     source = 'files/carpetas_procesadas/'
     
-    tables = camelot.read_pdf('files/carpetas_por_procesar/'+file, pages='all')
+    lattice = camelot.read_pdf('files/carpetas_por_procesar/'+file, pages='all', flavor='lattice', split_text=True)
+    stream = camelot.read_pdf('files/carpetas_por_procesar/'+file, pages='1', flavor='stream', split_text=True)
+    
     
     i = 0
-    for table in tables:
-        name = 'table-' + str(i) + '.json'
+    for table in stream:
+        name = '1stpage-' + str(i) + '.json'
+        i += 1
+        table.to_json(source + nombre_carpeta + '/tablas/' + name)
+    for table in lattice:
+        name = 'lattice-' + str(i) + '.json'
         i += 1
         table.to_json(source + nombre_carpeta + '/tablas/' + name)
 
